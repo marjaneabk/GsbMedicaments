@@ -64,23 +64,26 @@
             @if (Session::get('id') > 0)
                 <div class="collapse navbar-collapse" id="navbar-collapse-target">
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/') }}" data-toggle="collapse"
+                        <li><a href="{{ url('/getListeMedicaments') }}" data-toggle="collapse"
                                data-target=".navbar-collapse.in">Lister</a></li>
-                        <li><a href="{{ url('/') }}" data-toggle="collapse"
+                        <li><a href="{{ url('/ajouterFrais') }}" data-toggle="collapse"
                                data-target=".navbar-collapse.in">Ajouter</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ url('/') }}" data-toggle="collapse"
+                        <li><a href="{{ url('/getLogout') }}" data-toggle="collapse"
                                data-target=".navbar-collapse.in">Se déconnecter</a></li>
                     </ul>
                 </div>
+
             @endif
         </div>
     </nav>
 </div>
 <div class="container">
     @yield('content')
+
 </div>
+
 
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.js') }}"></script>

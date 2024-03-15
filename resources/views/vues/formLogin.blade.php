@@ -2,6 +2,9 @@
 @section('content')
 
     {!! Form::open(['url'=> 'login']) !!}
+    <br>
+    <br>
+    <br>
     <div class="col-md-12 well well-md">
         <center><h1>Authentification</h1></center>
         <div class="form-horizontal">

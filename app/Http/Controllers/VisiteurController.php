@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\dao\ServiceVisiteur;
+use App\Exceptions\MonException;
+use Exception;
 use Illuminate\Support\Facades\Session;
 use Request;
 use App\metier\Visiteur;

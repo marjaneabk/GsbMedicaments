@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MedicamentController;
 use App\Http\Controllers\VisiteurController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,5 @@ Route::get('/getLogout', [VisiteurController::class, 'signOut']);
 Route::post('/login', [VisiteurController::class, 'signIn']);
 Route::get('/formLogin', [VisiteurController::class, 'getLogin']);
 
+Route::get('/getListeMedicaments', [MedicamentController::class, 'getMedicaments']);
+Route::get('/listerMedicaments', [MedicamentController::class, 'getMedicaments']);
