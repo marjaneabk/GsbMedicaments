@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSB Frais</title>
+    <title>GSB Médicaments</title>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/monStyle.css') }}">
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
@@ -51,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}">GSB Frais</a>
+                <a class="navbar-brand" href="{{ url('/') }}">GSB Médicaments</a>
             </div>
             @if (Session::get('id') == 0)
                 <div class="collapse navbar-collapse navbar-right">
