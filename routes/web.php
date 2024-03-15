@@ -24,4 +24,4 @@ Route::post('/login', [VisiteurController::class, 'signIn']);
 Route::get('/formLogin', [VisiteurController::class, 'getLogin']);
 
 Route::get('/getListeMedicaments', [MedicamentController::class, 'getMedicaments']);
-Route::get('/listerMedicaments', [MedicamentController::class, 'getMedicaments']);
+Route::get('/listerMedicaments  ', [MedicamentController::class, 'getMedicaments']);
