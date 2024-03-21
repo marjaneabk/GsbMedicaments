@@ -38,3 +38,4 @@ Route::post('/validerMedicament', [MedicamentController::class, 'validateMedicam
 Route::get('/modifierMedicament/{id}', [MedicamentController::class, 'updateMedicament']);
 Route::post('/validerMedicament', [MedicamentController::class, 'validateMedicament']);
 
+Route::get('/supprimerMedicament/{id}', [MedicamentController::class, 'supprimeMedicament']);

@@ -47,7 +47,7 @@
             <div class="form-group">
                 <label class="col-md-3 col-sm-3 control-label">Contre Indications: </label>
                 <div class="col-md-3 col-sm-3">
-                    <input type="text" class="form-control" name="contre_indications" value="" placeholder="Contre Indications" required>
+                    <input type="text" class="form-control" name="contre_indication" value="" placeholder="Contre Indications" required>
                 </div>
             </div>
 
