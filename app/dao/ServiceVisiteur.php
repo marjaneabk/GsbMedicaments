@@ -18,6 +18,7 @@ class ServiceVisiteur{
                 if ($visiteur->pwd_visiteur == $pwd){
                     Session::put('id',$visiteur->id_visiteur);
                     Session::put('type', $visiteur->type_visiteur);
+                    Session::put('nom_visiteur', $visiteur->nom_visiteur);
                     $connected = true;
                 }
             }
