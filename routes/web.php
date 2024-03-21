@@ -19,9 +19,22 @@ Route::get('/', function () {
     return view('home');
 });
 
+
+
 Route::get('/getLogout', [VisiteurController::class, 'signOut']);
 Route::post('/login', [VisiteurController::class, 'signIn']);
 Route::get('/formLogin', [VisiteurController::class, 'getLogin']);
 
+Route::get('/formLogin', [VisiteurController::class, 'getLogin']);
+
+
+
 Route::get('/getListeMedicaments', [MedicamentController::class, 'getMedicaments']);
 Route::get('/listerMedicaments  ', [MedicamentController::class, 'getMedicaments']);
+
+Route::get('/ajouterMedicament', [MedicamentController::class, 'addMedicament']);
+Route::post('/validerMedicament', [MedicamentController::class, 'validateMedicament']);
+
+Route::get('/modifierMedicament/{id}', [MedicamentController::class, 'updateMedicament']);
+Route::post('/validerMedicament', [MedicamentController::class, 'validateMedicament']);
+

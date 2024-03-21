@@ -66,7 +66,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/getListeMedicaments') }}" data-toggle="collapse"
                                data-target=".navbar-collapse.in">Lister</a></li>
-                        <li><a href="{{ url('/ajouterFrais') }}" data-toggle="collapse"
+                        <li><a href="{{ url('/ajouterMedicament') }}" data-toggle="collapse"
                                data-target=".navbar-collapse.in">Ajouter</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -81,7 +81,6 @@
 </div>
 <div class="container">
     @yield('content')
-
 </div>
 
 

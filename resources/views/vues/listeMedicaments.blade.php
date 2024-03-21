@@ -1,5 +1,8 @@
 @extends('layouts.master')
 @section('content')
+    <br>
+    <br>
+    <br>
 <table class="table table-bordered table-striped table-responsive">
     <thead>
     <tr>
@@ -23,7 +26,7 @@
         <td> {{ $unMedicament->effets }}</td>
         <td> {{ $unMedicament->contre_indication }}</td>
         <td> {{ $unMedicament->prix_echantillon }}</td>
-        <td style="text-align:center;"><a href="{{ url('/modifierFrais') }}/{{ $unMedicament->id_medicament }}">
+        <td style="text-align:center;"><a href="{{ url('/modifierMedicament') }}/{{ $unMedicament->id_medicament }}">
                 <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="Modifier"></span>
                 <td style="text-align:center;">
                     <a class="glyphicon glyphicon-remove" data-toggle= "tooltip" data-placement="top" title="Supprimer" onclick="javascript:if (confirm('Suppression confirmée ?')) { window.location ='{{ url('/supprimerFrais') }}/{{ $unMedicament->id_medicament }}'; }">>
