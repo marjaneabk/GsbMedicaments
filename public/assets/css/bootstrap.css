@@ -297,7 +297,7 @@ th {
   content: "\2709";
 }
 .glyphicon-pencil:before {
-  content: "\270f";
+    content: "\f5a3";
 }
 .glyphicon-glass:before {
   content: "\e001";
@@ -336,7 +336,7 @@ th {
   content: "\e013";
 }
 .glyphicon-remove:before {
-  content: "\e014";
+    content: "\f2ed"
 }
 .glyphicon-zoom-in:before {
   content: "\e015";

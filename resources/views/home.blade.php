@@ -43,7 +43,6 @@
 
     <div class="container-fluid text-center" style="color:dodgerblue ; padding: 20px; font-family: Georgia">
 
-        <img src='assets/img/logo.png' alt="">
 
         <?php
         use Illuminate\Support\Facades\Session;
