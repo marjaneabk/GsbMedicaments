@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 @section('content')
 
@@ -14,6 +13,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="{{ url('/') }}">GSB Médicaments</a>
+
                 </div>
                 @if (Session::get('id') == 0)
                     <div class="collapse navbar-collapse navbar-right">
@@ -36,24 +36,23 @@
                                    data-target=".navbar-collapse.in">Se déconnecter</a></li>
                         </ul>
                     </div>
-
                 @endif
             </div>
         </nav>
     </div>
-    <body>
 
-    <?php
-    use Illuminate\Support\Facades\Session;
-    $nomVisiteur = Session::get('nom_visiteur');
-    var_dump($nomVisiteur);
-    ?>
+    <div class="container-fluid text-center" style="color:dodgerblue ; padding: 20px; font-family: Georgia">
 
-    @if(isset($nomVisiteur))
-        <p>Bonjour {{ $nomVisiteur }}</p>
-    @endif
-    <h1 class="bvn">Bienvenue sur la gestion de la formulation des médicaments</h1>
+        <img src='assets/img/logo.png' alt="">
 
-    </body>
+        <?php
+        use Illuminate\Support\Facades\Session;
+        $nomVisiteur = Session::get('nom_visiteur');
+        ?>
+        @if(isset($nomVisiteur))
+            <h1>Bonjour {{ $nomVisiteur }},</h1>
+        @endif
+        <h1>Bienvenue sur la gestion de la formulation des médicaments</h1>
+    </div>
+
 @stop
-
