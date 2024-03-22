@@ -40,18 +40,19 @@
             </div>
         </nav>
     </div>
+    <div style="text-align: center;">
+        <img src="{{ url('https://mbriand.fr/wp-content/uploads/2018/08/gsblogo.png') }}" alt="" >
+    </div>
 
     <div class="container-fluid text-center" style="color:dodgerblue ; padding: 20px; font-family: Georgia">
-
-
         <?php
         use Illuminate\Support\Facades\Session;
         $nomVisiteur = Session::get('nom_visiteur');
         ?>
         @if(isset($nomVisiteur))
-            <h1>Bonjour {{ $nomVisiteur }},</h1>
+            <h2>Bonjour {{ $nomVisiteur }},</h2>
         @endif
-        <h1>Bienvenue sur la gestion de la formulation des médicaments</h1>
+        <h2>Bienvenue sur la gestion de la formulation des médicaments</h2>
     </div>
 
 @stop

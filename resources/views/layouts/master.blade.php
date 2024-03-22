@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/monStyle.css') }}">
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <link href="//fonts.googleapis.com/css?family=Roboto:400,300" rel="stylesheet" type="text/css">
-    <style>
+    <link rel="stylesheet" href="{{ asset('assets/img/logo.png') }}">
+
+    +<style>
 
 
         .navbar {
