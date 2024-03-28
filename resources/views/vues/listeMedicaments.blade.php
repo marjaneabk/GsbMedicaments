@@ -47,9 +47,7 @@
             color: red;
         }
         /* Style pour l'icône du lien Supprimer */
-        .table a .glyphicon-remove {
-            color: red;
-        }
+
 
         /* Style pour les tooltips */
         [data-toggle="tooltip"] {
@@ -99,8 +97,7 @@
                         <span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="center" title="Modifier"></span>                    </a>
                 </td>
                 <td style="text-align:center;">
-                    <a href="{{ url('/supprimerMedicament') }}/{{ $unMedicament->id_medicament }}"  onclick="javascript:if (confirm('Suppression confirmée ?')) { window.location ='{{ url('/supprimerMedicament') }}/{{ $unMedicament->id_medicament }}'; }">
-                        <span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="center" title="Supprimer" ></span>
+                    <a class="glyphicon glyphicon-trash" data-toggle= "tooltip" data-placement="top"  style="color: red;" title="Supprimer" onclick="javascript:if (confirm('Suppression confirmée ?')) { window.location ='{{ url('/supprimerMedicament') }}/{{ $unMedicament->id_medicament }}'; }">
                     </a>
                 </td>
 
