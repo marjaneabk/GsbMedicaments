@@ -31,7 +31,8 @@ class ServiceMedicament
     }
 
 
-    public function getById($id_medicament){
+    public function getById($id_medicament)
+    {
         try {
             $medicamentById = DB::table('medicament')
                 ->select()
@@ -61,17 +62,17 @@ class ServiceMedicament
         }
     }
 
-    public function updateMedicament($id_medicament,$id_famille, $depot_legal, $nom_commercial, $effets, $contre_indication, $prix_echantillon)
+    public function updateMedicament($id_medicament, $id_famille, $depot_legal, $nom_commercial, $effets, $contre_indication, $prix_echantillon)
     {
         try {
             DB::table('medicament')
                 ->where('id_medicament', '=', $id_medicament)
                 ->update(['id_famille' => $id_famille,
-                'depot_legal' => $depot_legal,
-                'nom_commercial' => $nom_commercial,
-                'effets' => $effets,
-                'contre_indication' => $contre_indication,
-                'prix_echantillon' => $prix_echantillon
+                    'depot_legal' => $depot_legal,
+                    'nom_commercial' => $nom_commercial,
+                    'effets' => $effets,
+                    'contre_indication' => $contre_indication,
+                    'prix_echantillon' => $prix_echantillon
                 ]);
         } catch (QueryException $e) {
             throw new MonException($e->getMessage(), 5);
@@ -79,21 +80,23 @@ class ServiceMedicament
         }
     }
 
-    public function deleteMedicament($id_medicament){
+    public function deleteMedicament($id_medicament)
+    {
         try {
             DB::table('medicament')->where('id_medicament', '=', $id_medicament)->delete();
-        }catch (QueryException $e){
+        } catch (QueryException $e) {
             throw new MonException($e->getMessage(), 5);
         }
     }
 
-    public function rechercheMedicament($nom_commercial){
+    public function rechercheMedicament($nom_commercial)
+    {
         try {
             $medicament = DB::table('medicament')
                 ->select()
-                ->where('nom_commercial', 'like', '%'.$nom_commercial.'%')
+                ->where('nom_commercial', 'like', '%' . $nom_commercial . '%')
                 ->get();
-        }catch (QueryException $e){
+        } catch (QueryException $e) {
             throw new MonException($e->getMessage(), 5);
         }
         return $medicament;
@@ -108,6 +111,27 @@ class ServiceMedicament
             ->get();
 
         return $contraindicatedDrugs;
+    }
+
+    public function addInteraction($id_medicament, $id_interaction)
+    {
+        try {
+            DB::table('interagir')->insert([
+                'id_medicament' => $id_medicament,
+                'med_id_medicament' => $id_interaction
+            ]);
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function deleteInteraction($id_medicament)
+    {
+        try {
+            DB::table('interagir')->where('id_medicament', '=', $id_medicament)->delete();
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
     }
 
 }

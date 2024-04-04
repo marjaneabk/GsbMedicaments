@@ -41,3 +41,7 @@ Route::post('/validerMedicament', [MedicamentController::class, 'validateMedicam
 Route::get('/supprimerMedicament/{id}', [MedicamentController::class, 'supprimeMedicament']);
 
 Route::get('/rechercheMedicament', [MedicamentController::class, 'rechercheMedicament']);
+
+Route::get('/detailsMedicament/{id}', [MedicamentController::class, 'details']);
+Route::post('/detailsMedicament/{id}', [MedicamentController::class, 'addInteraction']);
+Route::delete('/deleteInteraction/{id_medicament}', [MedicamentController::class, 'deleteInteraction'])->name('deleteInteraction');

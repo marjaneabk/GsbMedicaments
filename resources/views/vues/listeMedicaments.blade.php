@@ -4,73 +4,37 @@
     <br>
     <br>
     <style>
-        /* Style pour la table */
-        .table {
-            width: 100%;
-            border-collapse: collapse;
+        .search-bar input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
 
-        /* Style pour les cellules de la table */
-        .table th,
-        .table td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        .search-bar input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: dodgerblue;
+            cursor: pointer;
+            margin-left: 10px;
         }
 
-        /* Style pour l'en-tête de la table */
-        .table thead th {
-            background-color: #f2f2f2;
-            color: #333;
-        }
-
-        /* Style pour les lignes impaires de la table */
-        .table tbody tr:nth-child(odd) {
-            background-color: #f9f9f9;
-        }
-
-        /* Style pour les liens dans la table */
-        .table a {
-            color: #337ab7;
-        }
-
-        /* Style pour l'icône du lien */
-        .table a .glyphicon {
-            font-size: 16px;
-            margin-right: 5px;
-        }
-        .table a .glyphicon-edit {
-            color: black;
-        }
-
-        .table a .glyphicon-trash {
-            color: red;
-        }
-
-        /* Style pour les tooltips */
-        [data-toggle="tooltip"] {
-            position: relative;
-        }
-
-        .tooltip {
-            position: absolute;
-            z-index: 1;
-            display: none;
-            padding: 5px;
-            background-color: #333;
-            color: #fff;
-            border-radius: 3px;
-            font-size: 12px;
-        }
-
-        [data-toggle="tooltip"]:hover .tooltip {
-            display: block;
+        .search-bar input[type="submit"]:hover {
+            background-color: darkblue;
         }
     </style>
+
+    <div class="search-bar">
     <form action="{{ url('/rechercheMedicament') }}" method="GET">
         <input type="text" name="recherche" placeholder="Rechercher un médicament">
         <input type="submit" value="Rechercher">
     </form>
+    </div>
+
 
     <table class="table table-bordered table-striped table-responsive">
         <thead>
@@ -88,7 +52,11 @@
         </thead>
         @foreach ($mesMedicaments as $unMedicament)
             <tr>
-                <td> {{ $unMedicament->nom_commercial }}</td>
+                <td>
+                    <a href="{{ url('/detailsMedicament') }}/{{ $unMedicament->id_medicament }}">
+                        {{ $unMedicament->nom_commercial }}
+                    </a>
+                </td>
                 <td> {{ $unMedicament->id_medicament }}</td>
                 <td> {{ $unMedicament->id_famille }}</td>
                 <td> {{ $unMedicament->depot_legal }}</td>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\dao\ServiceMedicament;
 use Exception;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Exceptions\MonException;
 
@@ -136,5 +136,55 @@ class MedicamentController extends Controller
     }
 
 
+    public function details($id)
+    {
+        try {
+            $serviceMedicament = new ServiceMedicament();
+            $medicament = $serviceMedicament->getById($id);
+            $contraindicatedDrugs = $serviceMedicament->getContraindicatedDrugs($id);
+            $allDrugs = $serviceMedicament->getMedicaments(); // Assuming you have a method to get all drugs
+            return view('vues/detailsMedicaments', compact('medicament', 'contraindicatedDrugs', 'allDrugs'));
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        }
+    }
+
+
+    public function addInteraction(Request $request, $id_medicament)
+    {
+        try {
+            $id_interaction = $request->input('id_interaction');
+            $unServiceMedicament = new ServiceMedicament();
+            $unServiceMedicament->addInteraction($id_medicament, $id_interaction);
+            return redirect()->route('vues/detailsMedicaments');
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        }
+    }
+
+
+    public function deleteInteraction(Request $request, $id_medicament)
+    {
+        try {
+            $id_interaction = $request->input('id_interaction');
+            $unServiceMedicament = new ServiceMedicament();
+            $unServiceMedicament->deleteInteraction($id_medicament, $id_interaction);
+            return redirect()->route('vues/detailsMedicaments');
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        }
+    }
 
 }
