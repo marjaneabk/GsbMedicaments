@@ -18,6 +18,11 @@ class MedicamentController extends Controller
             Session::forget('monErreur');
             $unServiceMedicament = new ServiceMedicament();
             $mesMedicaments = $unServiceMedicament->getMedicaments();
+
+            foreach ($mesMedicaments as $medicament) {
+                $medicament->contraindicatedDrugs = $unServiceMedicament->getContraindicatedDrugs($medicament->id_medicament);
+            }
+
             return view('vues/listeMedicaments', compact('mesMedicaments', 'erreur'));
         } catch (MonException$e) {
             $erreur = $e->getMessage();
@@ -113,8 +118,22 @@ class MedicamentController extends Controller
         }
     }
 
-
-
+    public function rechercheMedicament()
+    {
+        try {
+            $erreur = "";
+            $recherche = Request::input('recherche');
+            $unServiceMedicament = new ServiceMedicament();
+            $mesMedicaments = $unServiceMedicament->rechercheMedicament($recherche);
+            return view('vues/listeMedicaments', compact('mesMedicaments', 'erreur'));
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        }
+    }
 
 
 

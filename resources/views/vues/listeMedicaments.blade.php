@@ -46,8 +46,6 @@
         .table a .glyphicon-trash {
             color: red;
         }
-        /* Style pour l'icône du lien Supprimer */
-
 
         /* Style pour les tooltips */
         [data-toggle="tooltip"] {
@@ -69,13 +67,18 @@
             display: block;
         }
     </style>
+    <form action="{{ url('/rechercheMedicament') }}" method="GET">
+        <input type="text" name="recherche" placeholder="Rechercher un médicament">
+        <input type="submit" value="Rechercher">
+    </form>
+
     <table class="table table-bordered table-striped table-responsive">
         <thead>
         <tr>
+            <th style="width:60%">Nom </th>
             <th style="width:60%">Id médicament</th>
             <th style="width:60%">Famille</th>
             <th style="width:60%">depot_legal</th>
-            <th style="width:60%">Nom </th>
             <th style="width:60%">Effet</th>
             <th style="width:60%">Contre Indication </th>
             <th style="width:60%">Prix   </th>
@@ -85,10 +88,10 @@
         </thead>
         @foreach ($mesMedicaments as $unMedicament)
             <tr>
+                <td> {{ $unMedicament->nom_commercial }}</td>
                 <td> {{ $unMedicament->id_medicament }}</td>
                 <td> {{ $unMedicament->id_famille }}</td>
                 <td> {{ $unMedicament->depot_legal }}</td>
-                <td> {{ $unMedicament->nom_commercial }}</td>
                 <td> {{ $unMedicament->effets }}</td>
                 <td> {{ $unMedicament->contre_indication }}</td>
                 <td> {{ $unMedicament->prix_echantillon }}</td>
@@ -104,6 +107,7 @@
 
             </tr>
         @endforeach
+
     </table>
     @include ('vues.error')
 @stop

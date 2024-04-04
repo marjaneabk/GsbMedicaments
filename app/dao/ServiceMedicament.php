@@ -87,8 +87,27 @@ class ServiceMedicament
         }
     }
 
+    public function rechercheMedicament($nom_commercial){
+        try {
+            $medicament = DB::table('medicament')
+                ->select()
+                ->where('nom_commercial', 'like', '%'.$nom_commercial.'%')
+                ->get();
+        }catch (QueryException $e){
+            throw new MonException($e->getMessage(), 5);
+        }
+        return $medicament;
+    }
 
 
+    public function getContraindicatedDrugs($drug_id)
+    {
+        $contraindicatedDrugs = DB::table('interagir')
+            ->join('medicament', 'interagir.med_id_medicament', '=', 'medicament.id_medicament')
+            ->where('interagir.id_medicament', $drug_id)
+            ->get();
 
+        return $contraindicatedDrugs;
+    }
 
 }
