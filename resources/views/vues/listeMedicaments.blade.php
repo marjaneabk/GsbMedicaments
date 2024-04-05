@@ -26,6 +26,16 @@
         .search-bar input[type="submit"]:hover {
             background-color: darkblue;
         }
+
+        .delete-link {
+            color: red;
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .delete-link:hover {
+            color: darkred;
+        }
     </style>
 
     <div class="search-bar">
@@ -68,7 +78,7 @@
                         <span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="center" title="Modifier"></span>                    </a>
                 </td>
                 <td style="text-align:center;">
-                    <a class="glyphicon glyphicon-trash" data-toggle= "tooltip" data-placement="top"  style="color: red;" title="Supprimer" onclick="javascript:if (confirm('Suppression confirmée ?')) { window.location ='{{ url('/supprimerMedicament') }}/{{ $unMedicament->id_medicament }}'; }">
+                    <a class="glyphicon glyphicon-trash delete-link" data-toggle= "tooltip" data-placement="top"  title="Supprimer" onclick="javascript:if (confirm('Suppression confirmée ?')) { window.location ='{{ url('/supprimerMedicament') }}/{{ $unMedicament->id_medicament }}'; }">
                     </a>
                 </td>
 
