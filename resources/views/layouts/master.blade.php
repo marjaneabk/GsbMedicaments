@@ -66,6 +66,8 @@
             @if (Session::get('id') > 0)
                 <div class="collapse navbar-collapse" id="navbar-collapse-target">
                     <ul class="nav navbar-nav">
+                        <li><a href="{{ url('/connect') }}" data-toggle="collapse"
+                               data-target=".navbar-collapse.in">Accueil</a></li>
                         <li><a href="{{ url('/getListeMedicaments') }}" data-toggle="collapse"
                                data-target=".navbar-collapse.in">Lister</a></li>
                         <li><a href="{{ url('/ajouterMedicament') }}" data-toggle="collapse"

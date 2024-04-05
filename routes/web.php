@@ -16,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('vues/connect');
+    return view('home');
 });
 
-
+Route::get('/connect', function () {
+    return view('vues/connect');
+});
 
 Route::get('/getLogout', [VisiteurController::class, 'signOut']);
 Route::post('/login', [VisiteurController::class, 'signIn']);
@@ -42,6 +44,8 @@ Route::get('/supprimerMedicament/{id}', [MedicamentController::class, 'supprimeM
 
 Route::get('/rechercheMedicament', [MedicamentController::class, 'rechercheMedicament']);
 
-Route::get('/detailsMedicament/{id}', [MedicamentController::class, 'details']);
+Route::get('/detailsMedicament/{id}', [MedicamentController::class, 'details'])->name('detailsMedicament');
 Route::post('/detailsMedicament/{id}', [MedicamentController::class, 'addInteraction']);
-Route::delete('/deleteInteraction/{id_medicament}', [MedicamentController::class, 'deleteInteraction'])->name('deleteInteraction');
+Route::get('/supprimerInteraction/{id_medicament}/{id_interaction}', [MedicamentController::class, 'deleteInteraction']);
+
+Route::post('/modifierMedicamentCompatible', [MedicamentController::class, 'modifierMedicamentCompatible'])->name('modifierMedicamentCompatible');

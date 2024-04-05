@@ -5,7 +5,7 @@ namespace App\dao;
 use App\Exceptions\MonException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Medicament;
 class ServiceMedicament
 {
     public function getMedicaments()
@@ -125,13 +125,38 @@ class ServiceMedicament
         }
     }
 
-    public function deleteInteraction($id_medicament)
+
+    public function deleteInteraction($id_medicament, $id_interaction)
     {
         try {
-            DB::table('interagir')->where('id_medicament', '=', $id_medicament)->delete();
+            DB::table('interagir')
+                ->where('id_medicament', $id_medicament)
+                ->where('med_id_medicament', $id_interaction)
+                ->delete();
         } catch (QueryException $e) {
             throw new MonException($e->getMessage(), 5);
         }
     }
+    public function findMedicament($id)
+    {
+        return Medicament::find($id);
+    }
+
+    public function updateContraindicatedDrug($oldMedicament, $newMedicament, $id_medicament)
+    {
+        // Delete the old contraindicated drug
+        DB::table('interagir')
+            ->where('id_medicament', $id_medicament)
+            ->where('med_id_medicament', $oldMedicament->id_medicament)
+            ->delete();
+
+        // Add the new contraindicated drug
+        DB::table('interagir')->insert([
+            'id_medicament' => $id_medicament,
+            'med_id_medicament' => $newMedicament->id_medicament
+        ]);
+    }
+
+
 
 }

@@ -16,7 +16,7 @@
     </ul>
 
     <h3>Ajouter un médicament contre-indiqué</h3>
-    {!! Form::open(['url' => '/addInteraction/' . $medicament->id_medicament, 'method' => 'post']) !!}
+    {!! Form::open(['url' => '/detailsMedicament/' . $medicament->id_medicament, 'method' => 'post']) !!}
     {!! Form::token() !!}
     <div class="form-group">
         <div class="col-md-3 col-sm-3">
@@ -33,22 +33,35 @@
     </button>
     {!! Form::close() !!}
 
-    <h3>Supprimer un médicament contre-indiqué</h3>
-    {!! Form::open(['url' => '/deleteInteraction/' . $medicament->id_medicament, 'method' => 'post']) !!}
-    {!! Form::token() !!}
-    <div class="form-group">
-        <div class="col-md-3 col-sm-3">
-            <select class="form-control" name="id_interaction" required>
-                <option value="">Sélectionnez un medicament</option>
-                @foreach ($contraindicatedDrugs as $drug)
-                    <option value="{{ $drug->id_medicament }}">{{ $drug->nom_commercial }}</option>
+    <h3>Supprimer ou Modifier un médicament contre-indiqué</h3>
+    @foreach($contraindicatedDrugs as $drug)
+        <p>{{ $drug->nom_commercial }}
+
+        <form action="{{ route('modifierMedicamentCompatible') }}" method="POST">
+            @csrf
+            <input type="hidden" name="id_medicament" value="{{ $medicament->id_medicament }}">
+            <input type="hidden" name="old_med_id_medicament" value="{{ $drug->id_medicament }}">
+
+            <select name="new_med_id_medicament">
+                @foreach($allDrugs as $medicamentOption)
+                    <option value="{{ $medicamentOption->id_medicament }}" {{ $medicamentOption->id_medicament == $drug->id_medicament ? 'selected' : '' }}>
+                        {{ $medicamentOption->nom_commercial }}
+                    </option>
                 @endforeach
             </select>
-        </div>
-    </div>
-    @method('DELETE')
-    <button type="submit" class="btn btn-default btn-primary">
-        <span class="glyphicon glyphicon-remove"></span> Supprimer
-    </button>
-    {!! Form::close() !!}
+
+            <button type="submit" class="btn btn-default btn-primary">
+            Modifier
+            </button>
+
+        <a class="glyphicon glyphicon-trash" data-toggle= "tooltip" data-placement="top"  style="color: red;" title="Supprimer" onclick="javascript:if (confirm('Suppression confirmée ?')) { window.location ='{{ url('/supprimerInteraction') }}/{{ $medicament->id_medicament }}/{{ $drug->id_medicament }}'; }">
+        </a>
+        </p>
+        </form>
+
+    @endforeach
+
+
+
 @stop
+

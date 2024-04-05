@@ -7,7 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Exceptions\MonException;
-
+use App\Models\Medicament;
 class MedicamentController extends Controller
 {
     public function getMedicaments()
@@ -160,7 +160,7 @@ class MedicamentController extends Controller
             $id_interaction = $request->input('id_interaction');
             $unServiceMedicament = new ServiceMedicament();
             $unServiceMedicament->addInteraction($id_medicament, $id_interaction);
-            return redirect()->route('vues/detailsMedicaments');
+            return redirect()->route('detailsMedicament', ['id' => $id_medicament]);
         } catch (MonException $e) {
             $erreur = $e->getMessage();
             return view('vues/error', compact('erreur'));
@@ -171,13 +171,12 @@ class MedicamentController extends Controller
     }
 
 
-    public function deleteInteraction(Request $request, $id_medicament)
+    public function deleteInteraction($id_medicament, $id_interaction)
     {
         try {
-            $id_interaction = $request->input('id_interaction');
             $unServiceMedicament = new ServiceMedicament();
             $unServiceMedicament->deleteInteraction($id_medicament, $id_interaction);
-            return redirect()->route('vues/detailsMedicaments');
+            return redirect()->route('detailsMedicament', ['id' => $id_medicament]);
         } catch (MonException $e) {
             $erreur = $e->getMessage();
             return view('vues/error', compact('erreur'));
@@ -186,5 +185,41 @@ class MedicamentController extends Controller
             return view('vues/error', compact('erreur'));
         }
     }
+
+    public function modifierMedicamentCompatible(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'id_medicament' => 'required|integer',
+            'old_med_id_medicament' => 'required|integer',
+            'new_med_id_medicament' => 'required|integer',
+        ]);
+
+        $unServiceMedicament = new ServiceMedicament();
+
+        // Find the contraindicated drug
+        $oldMedicament = $unServiceMedicament->findMedicament($request->old_med_id_medicament);
+
+        // Check if the contraindicated drug exists
+        if (!$oldMedicament) {
+            return redirect()->back()->with('error', 'Contrindicated drug not found');
+        }
+
+        // Find the new drug
+        $newMedicament = $unServiceMedicament->findMedicament($request->new_med_id_medicament);
+
+        // Check if the new drug exists
+        if (!$newMedicament) {
+            return redirect()->back()->with('error', 'New drug not found');
+        }
+
+        // Update the contraindicated drug
+        $unServiceMedicament->updateContraindicatedDrug($oldMedicament, $newMedicament, $request->id_medicament);
+
+        // Redirect back with a success message
+        return redirect()->route('detailsMedicament', ['id' => $request->id_medicament]);
+    }
+
+
 
 }
