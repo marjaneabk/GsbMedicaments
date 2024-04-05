@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('content')
     <br>
-    <br>
-    <br>
+    <h1 style="text-align: center; font-weight: bold;"> Liste de la formulation des médicaments</h1>
+<br> <br>
     <style>
         .search-bar input[type="text"] {
             width: 50%;
@@ -36,17 +36,42 @@
         .delete-link:hover {
             color: darkred;
         }
-    </style>
 
+        .table tr:nth-child(even){background-color: #c4dfff;}
+
+        .table {
+            border: 1px solid #000000; /* Bordure en noir */
+
+        }
+
+        .table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #c4dfff;
+            color: black;
+        }
+
+         body {
+             background-color: #c4dfff;
+         }
+
+        .container {
+            margin-top: 50px;
+        }
+
+
+    </style>
+    <br>
     <div class="search-bar">
     <form action="{{ url('/rechercheMedicament') }}" method="GET">
         <input type="text" name="recherche" placeholder="Rechercher un médicament">
         <input type="submit" value="Rechercher">
     </form>
     </div>
+<br>
 
-
-    <table class="table table-bordered table-striped table-responsive">
+    <table class="table table-striped ">
         <thead>
         <tr>
             <th style="width:60%">Nom </th>

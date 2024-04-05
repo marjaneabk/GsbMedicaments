@@ -1,6 +1,14 @@
 @extends('layouts.master')
 @section('content')
+<style>
+    body {
+        background-color: #5c8ac1;
+    }
 
+    .container {
+        margin-top: 50px;
+    }
+</style>
     <div class="container">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container-fluid">
@@ -30,11 +38,14 @@
             </div>
         </nav>
     </div>
-    <div style="text-align: center;">
-        <img src="{{ url('https://mbriand.fr/wp-content/uploads/2018/08/gsblogo.png') }}" alt="" >
-    </div>
 
-    <div class="container-fluid text-center" style="color:dodgerblue ; padding: 20px; font-family: Georgia">
+<br>
+
+    <div class="container-fluid text-center" style="border-radius: 10px;  background-color: white; color:#5c8ac1 ; padding: 20px; font-family: Georgia; border: 2px solid white;">
+        <div style="text-align: center;">
+            <img src="{{ url('https://mbriand.fr/wp-content/uploads/2018/08/gsblogo.png') }}" alt="" >
+        </div>
+        <br>
         <?php
         use Illuminate\Support\Facades\Session;
         $nomVisiteur = Session::get('nom_visiteur');
@@ -43,6 +54,6 @@
             <h2>Bonjour {{ $nomVisiteur }},</h2>
         @endif
         <h2>Bienvenue sur la gestion de la formulation des médicaments</h2>
-    </div>
 
+    </div>
 @stop

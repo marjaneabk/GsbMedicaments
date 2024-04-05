@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+
     <h1 style="text-align: center; font-weight: bold;">Fiche détail d'un Médicament: </h1>
     <h2 style="font-style: italic;">{{ $medicament->nom_commercial }}</h2>
     <p>Famille: {{ $medicament->id_famille }}</p>
