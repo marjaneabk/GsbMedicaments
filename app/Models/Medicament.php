@@ -15,4 +15,9 @@ class Medicament extends Model
         return $this->belongsToMany(Medicament::class, 'interagir', 'id_medicament', 'med_id_medicament');
     }
 
+    public function famille()
+    {
+        return $this->belongsTo(Famille::class, 'id_famille');
+    }
+
 }

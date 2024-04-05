@@ -2,7 +2,6 @@
 @section('content')
     <h1 style="text-align: center; font-weight: bold;">Fiche détail d'un Médicament: </h1>
     <h2 style="font-style: italic;">{{ $medicament->nom_commercial }}</h2>
-    <p>Id médicament: {{ $medicament->id_medicament }}</p>
     <p>Famille: {{ $medicament->id_famille }}</p>
     <p>Depot legal: {{ $medicament->depot_legal }}</p>
     <p>Effet: {{ $medicament->effets }}</p>

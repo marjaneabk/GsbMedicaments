@@ -18,7 +18,7 @@ class MedicamentController extends Controller
             Session::forget('monErreur');
             $unServiceMedicament = new ServiceMedicament();
             $mesMedicaments = $unServiceMedicament->getMedicaments();
-
+            $mesMedicaments = Medicament::with('famille')->get();
             foreach ($mesMedicaments as $medicament) {
                 $medicament->contraindicatedDrugs = $unServiceMedicament->getContraindicatedDrugs($medicament->id_medicament);
             }

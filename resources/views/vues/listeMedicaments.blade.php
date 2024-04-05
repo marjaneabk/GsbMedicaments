@@ -68,7 +68,7 @@
                     </a>
                 </td>
                 <td> {{ $unMedicament->id_medicament }}</td>
-                <td> {{ $unMedicament->id_famille }}</td>
+                <td> {{ $unMedicament->famille->lib_famille }}</td>
                 <td> {{ $unMedicament->depot_legal }}</td>
                 <td> {{ $unMedicament->effets }}</td>
                 <td> {{ $unMedicament->contre_indication }}</td>
