@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('content')
     <br>
-    <h1 style="text-align: center; font-weight: bold;"> Liste de la formulation des médicaments</h1>
 <br> <br>
     <style>
         .search-bar input[type="text"] {
@@ -62,9 +61,10 @@
 
 
     </style>
+
+    <center><h1 style="font-weight: bold;">Liste de la formulation des médicaments</h1></center>
+
     <br>
-
-
 
     <table class="table table-striped ">
         <thead>

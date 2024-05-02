@@ -9,10 +9,10 @@
           background-color: #c4dfff;
       }
   </style>
+  <center><h1 style="font-weight: bold;">Modifier un médicament</h1></center>
 
-    {!! Form::open(['url' => 'validerMedicament']) !!}
+  {!! Form::open(['url' => 'validerMedicament']) !!}
     <div class="col-md-12  col-sm-12 well well-md">
-        <center><h1></h1></center>
         <div class="form-horizontal">
             <input type="hidden" name="id_medicament" value="{{$unMedicament->id_medicament ?? 0}}"/>
             <div class="form-group">
