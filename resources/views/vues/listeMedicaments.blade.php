@@ -63,13 +63,8 @@
 
     </style>
     <br>
-    <div class="search-bar">
-    <form action="{{ url('/rechercheMedicament') }}" method="GET">
-        <input type="text" name="recherche" placeholder="Rechercher un médicament">
-        <input type="submit" value="Rechercher">
-    </form>
-    </div>
-<br>
+
+
 
     <table class="table table-striped ">
         <thead>
@@ -85,6 +80,7 @@
             <th style="width:20%">Supprimer</th>
         </tr>
         </thead>
+
         @foreach ($mesMedicaments as $unMedicament)
             <tr>
                 <td>

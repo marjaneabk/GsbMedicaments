@@ -1,5 +1,14 @@
 @extends('layouts.master')
 @section('content')
+  <br>
+  <br>
+  <br>
+
+  <style>
+      body {
+          background-color: #c4dfff;
+      }
+  </style>
 
     {!! Form::open(['url' => 'validerMedicament']) !!}
     <div class="col-md-12  col-sm-12 well well-md">
