@@ -62,10 +62,19 @@
 
     </style>
 
-    <center><h1 style="font-weight: bold;">Liste de la formulation des médicaments</h1></center>
+    <center><h1 style="font-weight: bold;">Liste des interactions des médicaments</h1></center>
 
     <br>
 
+    <form action="{{ url('/getListeMedicaments') }}" method="GET" style="width: 500px; margin: auto;">
+        <input type="text" name="searchTerm" placeholder="Rechercher par nom" style="width: 70%; padding: 15px; font-size: 20px;">
+        <input type="submit" value="Rechercher" style="width: 25%; padding: 15px; font-size: 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+    </form>
+
+
+
+
+    <br>
     <table class="table table-striped ">
         <thead>
         <tr>
@@ -96,7 +105,8 @@
                 <td> {{ $unMedicament->prix_echantillon }}</td>
                 <td style="text-align:center;">
                     <a href="{{ url('/modifierMedicament') }}/{{ $unMedicament->id_medicament }}">
-                        <span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="center" title="Modifier"></span>                    </a>
+                        <span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="center" title="Modifier"></span>
+                    </a>
                 </td>
                 <td style="text-align:center;">
                     <a class="glyphicon glyphicon-trash delete-link" data-toggle= "tooltip" data-placement="top"  title="Supprimer" onclick="javascript:if (confirm('Suppression confirmée ?')) { window.location ='{{ url('/supprimerMedicament') }}/{{ $unMedicament->id_medicament }}'; }">

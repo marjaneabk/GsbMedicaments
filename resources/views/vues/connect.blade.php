@@ -53,7 +53,7 @@
         @if(isset($nomVisiteur))
             <h2>Bonjour {{ $nomVisiteur }},</h2>
         @endif
-        <h2>Bienvenue sur la gestion de la formulation des médicaments</h2>
+        <h2>Bienvenue sur la gestion des interactions médicamenteuses</h2>
 
     </div>
 @stop

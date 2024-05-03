@@ -11,15 +11,14 @@ use App\Exceptions\MonException;
 use App\Models\Medicament;
 class MedicamentController extends Controller
 {
-    public function getMedicaments()
+    public function getMedicaments(Request $request)
     {
         try {
             $erreur = "";
             $monErreur = Session::get('monErreur');
             Session::forget('monErreur');
             $unServiceMedicament = new ServiceMedicament();
-            $mesMedicaments = $unServiceMedicament->getMedicaments();
-            $mesMedicaments = Medicament::with('famille')->get();
+            $mesMedicaments = $unServiceMedicament->getMedicaments($request->get('searchTerm'));
             foreach ($mesMedicaments as $medicament) {
                 $medicament->contraindicatedDrugs = $unServiceMedicament->getContraindicatedDrugs($medicament->id_medicament);
             }
@@ -74,18 +73,18 @@ class MedicamentController extends Controller
         }
     }
 
-    public function validateMedicament()
+    public function validateMedicament(Request $request)
     {
         try {
             $erreur = "";
 
-            $id_medicament = Request::input('id_medicament');
-            $id_famille = Request::input('id_famille');
-            $depot_legal = Request::input('depot_legal');
-            $nom_commercial = Request::input('nom_commercial');
-            $effets = Request::input('effets');
-            $contre_indication = Request::input('contre_indication');
-            $prix_echantillon = Request::input('prix_echantillon');
+            $id_medicament = $request->input('id_medicament');
+            $id_famille = $request->input('id_famille');
+            $depot_legal = $request->input('depot_legal');
+            $nom_commercial = $request->input('nom_commercial');
+            $effets = $request->input('effets');
+            $contre_indication = $request->input('contre_indication');
+            $prix_echantillon = $request->input('prix_echantillon');
 
             $unServiceMedicament = new ServiceMedicament();
 
@@ -108,16 +107,26 @@ class MedicamentController extends Controller
     public function supprimeMedicament($id_medicament)
     {
         try {
-            $erreur = "";
             $unServiceMedicament = new ServiceMedicament();
             $unServiceMedicament->deleteMedicament($id_medicament);
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        }
+
+        try {
             $unServiceMedicament = new ServiceMedicament();
             $mesMedicaments = $unServiceMedicament->getMedicaments();
-            return view('vues/getListeMedicaments', compact('mesMedicaments', 'erreur'));
+            return view('vues/listeMedicaments', compact('mesMedicaments'));
         } catch (MonException $e) {
-            return view('vues/getListeMedicaments', compact('mesMedicaments', 'erreur'));
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
         } catch (Exception $e) {
-            return view('vues/listeMedicaments', compact('mesMedicaments', 'erreur'));
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
         }
     }
 
@@ -207,6 +216,7 @@ class MedicamentController extends Controller
         // Redirect back with a success message
         return redirect()->route('detailsMedicament', ['id' => $request->id_medicament]);
     }
+
 
 
 

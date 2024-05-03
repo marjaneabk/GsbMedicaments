@@ -48,3 +48,4 @@ Route::post('/detailsMedicament/{id}', [MedicamentController::class, 'addInterac
 Route::get('/supprimerInteraction/{id_medicament}/{id_interaction}', [MedicamentController::class, 'deleteInteraction']);
 
 Route::post('/modifierMedicamentCompatible', [MedicamentController::class, 'modifierMedicamentCompatible'])->name('modifierMedicamentCompatible');
+

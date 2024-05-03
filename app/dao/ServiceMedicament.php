@@ -8,13 +8,27 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Medicament;
 class ServiceMedicament
 {
-    public function getMedicaments()
+    public function getMedicaments($searchTerm = null)
     {
         try {
-            $lesMedicaments = DB::table('medicament')
-                ->select()
-                ->get();
-            return $lesMedicaments;
+            $query = Medicament::with('famille');
+
+            if ($searchTerm) {
+                $query->where(function ($query) use ($searchTerm) {
+                    $query->where('nom_commercial', 'like', '%' . $searchTerm . '%')
+                        ->orWhereHas('famille', function ($query) use ($searchTerm) {
+                            $query->where('lib_famille', 'like', '%' . $searchTerm . '%');
+                        });
+                });
+            }
+
+            $mesMedicaments = $query->get();
+
+            foreach ($mesMedicaments as $medicament) {
+                $medicament->contraindicatedDrugs = $this->getContraindicatedDrugs($medicament->id_medicament);
+            }
+
+            return $mesMedicaments;
         } catch (QueryException $e) {
             throw new MonException($e->getMessage(), 5);
         }
@@ -89,18 +103,7 @@ class ServiceMedicament
         }
     }
 
-    public function rechercheMedicament($nom_commercial)
-    {
-        try {
-            $medicament = DB::table('medicament')
-                ->select()
-                ->where('nom_commercial', 'like', '%' . $nom_commercial . '%')
-                ->get();
-        } catch (QueryException $e) {
-            throw new MonException($e->getMessage(), 5);
-        }
-        return $medicament;
-    }
+
 
 
     public function getContraindicatedDrugs($drug_id)
