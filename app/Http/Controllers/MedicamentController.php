@@ -219,5 +219,61 @@ class MedicamentController extends Controller
 
 
 
+    public function getCompo(Request $request){
+        try {
+            $erreur = "";
+            $monErreur = Session::get('monErreur');
+            Session::forget('monErreur');
+            $unServiceMedicament = new ServiceMedicament();
+            $lesCompos = $unServiceMedicament->getCompo();
+            return view('vues/listeComposants', compact('lesCompos', 'erreur'));
+        } catch (MonException$e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        } catch (Exception$e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        }
+    }
+
+    public function getComposant() {
+        try {
+            $erreur = "";
+            $monErreur = Session::get('monErreur');
+            Session::forget('monErreur');
+            $unServiceMedicament = new ServiceMedicament();
+            $lesCompos = $unServiceMedicament->getComposant();
+            return view('vues/listeCompos', compact('lesCompos', 'erreur'));
+        } catch (MonException$e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        } catch (Exception$e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        }
+    }
+
+
+
+    public function getComposantById(Request $request)
+    {
+        try {
+            $erreur = "";
+            $monErreur = Session::get('monErreur');
+            Session::forget('monErreur');
+            $unServiceMedicament = new ServiceMedicament();
+            $lesCompos = $unServiceMedicament->getComposantById($request->get('id_composant'));
+            return view('vues/detailsComposants', compact('lesCompos', 'erreur'));
+        } catch (MonException$e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        } catch (Exception$e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        }
+    }
+
+
+
 
 }

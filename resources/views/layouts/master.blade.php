@@ -72,6 +72,8 @@
                                data-target=".navbar-collapse.in">Lister</a></li>
                         <li><a href="{{ url('/ajouterMedicament') }}" data-toggle="collapse"
                                data-target=".navbar-collapse.in">Ajouter</a></li>
+                        <li><a href="{{ url('/getListeComposants') }}" data-toggle="collapse"
+                               data-target=".navbar-collapse.in">Liste Composant</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ url('/getLogout') }}" data-toggle="collapse"

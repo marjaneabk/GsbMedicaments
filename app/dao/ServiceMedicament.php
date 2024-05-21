@@ -156,6 +156,46 @@ class ServiceMedicament
             'med_id_medicament' => $newMedicament->id_medicament
         ]);
     }
+    public function getCompo()
+    {
+        try {
+            $lesCompos = DB::table('composant ')
+                ->select('id_composant', 'lib_composant')
+                ->get();
+            return $lesCompos;
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function getComposant()
+    {
+        try {
+            $lesComposants = DB::table('composant as CP')
+                ->join('constituer as C', 'CP.id_composant', '=', 'C.id_composant')
+                ->join('medicament as M', 'C.id_medicament', '=', 'M.id_medicament')
+                ->select('CP.id_composant', 'CP.lib_composant', 'C.qte_composant', 'M.id_medicament', 'M.nom_commercial')
+                ->get();
+            return $lesComposants;
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+    public function getComposantById($id_composant)
+    {
+        try {
+            $composantById = DB::table('composant as CP')
+                ->join('constituer as C', 'CP.id_composant', '=', 'C.id_composant')
+                ->join('medicament as M', 'C.id_medicament', '=', 'M.id_medicament')
+                ->select('CP.id_composant', 'CP.lib_composant', 'C.qte_composant', 'M.id_medicament', 'M.nom_commercial')
+                ->where('CP.id_composant', '=', $id_composant)
+                ->first();
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+        return $composantById;
+    }
 
 
 
