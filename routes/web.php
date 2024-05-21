@@ -50,4 +50,5 @@ Route::get('/supprimerInteraction/{id_medicament}/{id_interaction}', [Medicament
 Route::post('/modifierMedicamentCompatible', [MedicamentController::class, 'modifierMedicamentCompatible'])->name('modifierMedicamentCompatible');
 
 Route::get('/getListeComposants', [MedicamentController::class, 'getComposant']);
+Route::get('/rechercheComposant', [MedicamentController::class, 'rechercheComposant']);
 

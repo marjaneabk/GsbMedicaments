@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\dao\ServiceMedicament;
+use App\Models\Composant;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -271,6 +272,14 @@ class MedicamentController extends Controller
             $erreur = $e->getMessage();
             return view('vues/error', compact('erreur'));
         }
+    }
+
+    public function rechercheComposant(Request $request)
+    {
+        $id_composant = $request->get('composant');
+        $composant = Composant::where('id_composant', $id_composant)->first();
+        return view('vues/listeCompos', compact('composant'));
+
     }
 
 
