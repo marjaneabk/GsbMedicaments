@@ -282,7 +282,24 @@ class MedicamentController extends Controller
 
     }
 
+    public function updateCompos($id_composant)
+    {
+        try {
+            $monErreur = "";
+            $erreur = "";
+            $unServiceMedicament = new ServiceMedicament();
+            $unComposant = $unServiceMedicament->getComposantById($id_composant);
+            $titrevue = "Modification d'un composant";
+            return view('vues/modifCompos', compact('unComposant', 'titrevue', 'erreur'));
 
+        } catch (MonException $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        } catch (Exception $e) {
+            $erreur = $e->getMessage();
+            return view('vues/error', compact('erreur'));
+        }
+    }
 
 
 }

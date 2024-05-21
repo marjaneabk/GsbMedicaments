@@ -52,3 +52,5 @@ Route::post('/modifierMedicamentCompatible', [MedicamentController::class, 'modi
 Route::get('/getListeComposants', [MedicamentController::class, 'getComposant']);
 Route::get('/rechercheComposant', [MedicamentController::class, 'rechercheComposant']);
 
+Route::get('/modifierComposant/{id}', [MedicamentController::class, 'updateCompos']);
+

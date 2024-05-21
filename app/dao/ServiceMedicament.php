@@ -198,5 +198,19 @@ class ServiceMedicament
     }
 
 
+    public function updateCompos($id_composant, $lib_composant, $qte_composant)
+    {
+        try {
+            DB::table('composant')
+                ->where('id_composant', '=', $id_composant)
+                ->update(['lib_composant' => $lib_composant,
+                    'qte_composant' => $qte_composant
+                ]);
+        } catch (QueryException $e) {
+            throw new MonException($e->getMessage(), 5);
+        }
+    }
+
+
 
 }
