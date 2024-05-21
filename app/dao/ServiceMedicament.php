@@ -15,10 +15,7 @@ class ServiceMedicament
 
             if ($searchTerm) {
                 $query->where(function ($query) use ($searchTerm) {
-                    $query->where('nom_commercial', 'like', '%' . $searchTerm . '%')
-                        ->orWhereHas('famille', function ($query) use ($searchTerm) {
-                            $query->where('lib_famille', 'like', '%' . $searchTerm . '%');
-                        });
+                    $query->where('nom_commercial', 'like', '%' . $searchTerm . '%');
                 });
             }
 
